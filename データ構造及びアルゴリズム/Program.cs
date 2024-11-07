@@ -7,11 +7,31 @@ cnt = 1;
 do
 {
     j = j + 1;
-    if(cnt>=4)
+    if (strings[j - 1] == strings[j])
     {
-        strings[i] = strings[j-1];
-        strings[i + 1] = '*';
-        strings[i + 2] = Convert.ToChar(cnt);
-        i = i + 3;
+        cnt = cnt + 1;
     }
-}
+    else
+    {
+        if (cnt >= 4)
+        {
+            strings[i] = strings[j - 1];
+            strings[i + 1] = '*';
+            strings[i + 2] = Convert.ToChar(cnt);
+            i = i + 3;
+        }
+        else
+        {
+            do
+            {
+                strings[i] = strings[j - cnt];
+                i = i + 1;
+                cnt = cnt - 1;
+            } while (i != 1);
+            cnt = 1;
+        }
+    }
+} while (strings[j] != '#') ;
+strings[i] = strings[j];
+strings[j] = ' ';
+
